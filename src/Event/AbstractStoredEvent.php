@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\CQRS\CQRS\Event;
+namespace srag\CQRS\Event;
 
 use ActiveRecord;
 use ilDateTime;
 use ilDateTimeException;
 use ilException;
-use srag\CQRS\Aggregate\DomainObjectId;
-use srag\CQRS\Event\EventID;
+use ILIAS\Data\UUID\Uuid;
+use ILIAS\Data\UUID\Factory;
 
 /**
  * Class AbstractStoredEvent
@@ -29,7 +29,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
      */
     protected $id;
     /**
-     * @var EventID
+     * @var string
      *
      * @con_has_field  true
      * @con_fieldtype  text
@@ -39,7 +39,16 @@ abstract class AbstractStoredEvent extends ActiveRecord
      */
     protected $event_id;
     /**
-     * @var DomainObjectId
+     * @var int
+     *
+     * @con_has_field  true
+     * @con_fieldtype  integer
+     * @con_is_notnull true
+     * @con_length     8
+     */
+    protected $event_version;
+    /**
+     * @var Uuid
      *
      * @con_has_field  true
      * @con_fieldtype  text
@@ -96,26 +105,29 @@ abstract class AbstractStoredEvent extends ActiveRecord
 
 
     /**
-     * Store event data.
+     * Store Event Data
      *
-     * @param EventID        $event_id
-     * @param DomainObjectId $aggregate_id
-     * @param string         $event_name
-     * @param ilDateTime     $occurred_on
-     * @param int            $initiating_user_id
-     * @param string         $event_body
-     * @param string         $event_class
+     * @param string $event_id
+     * @param int $event_version
+     * @param Uuid $aggregate_id
+     * @param string $event_name
+     * @param ilDateTime $occurred_on
+     * @param int $initiating_user_id
+     * @param string $event_body
+     * @param string $event_class
      */
     public function setEventData(
-        EventID $event_id,
-        DomainObjectId $aggregate_id,
+        string $event_id,
+        int $event_version,
+        Uuid $aggregate_id,
         string $event_name,
         ilDateTime $occurred_on,
         int $initiating_user_id,
         string $event_body,
         string $event_class
-) : void {
+    ) : void {
         $this->event_id = $event_id;
+        $this->event_version = $event_version;
         $this->aggregate_id = $aggregate_id;
         $this->event_name = $event_name;
         $this->occurred_on = $occurred_on;
@@ -144,18 +156,25 @@ abstract class AbstractStoredEvent extends ActiveRecord
 
 
     /**
-     * @return EventID
+     * @return string
      */
-    public function getEventId() : EventID
+    public function getEventId() : string
     {
         return $this->event_id;
     }
 
+    /**
+     * @return int
+     */
+    public function getEventVersion() : int
+    {
+        return $this->event_version;
+    }
 
     /**
-     * @return DomainObjectId
+     * @return string
      */
-    public function getAggregateId() : DomainObjectId
+    public function getAggregateId() : string
     {
         return $this->aggregate_id;
     }
@@ -205,12 +224,10 @@ abstract class AbstractStoredEvent extends ActiveRecord
     public function sleep($field_name)
     {
         switch ($field_name) {
-            case 'event_id':
-                return $this->event_id->getId();
+            case 'aggregate_id':
+                return $this->aggregate_id->toString();
             case 'occurred_on':
                 return $this->occurred_on->get(IL_CAL_DATETIME);
-            case 'aggregate_id':
-                return $this->aggregate_id->getId();
             default:
                 return null;
         }
@@ -227,12 +244,11 @@ abstract class AbstractStoredEvent extends ActiveRecord
     public function wakeUp($field_name, $field_value)
     {
         switch ($field_name) {
-            case 'event_id':
-                return new EventID($field_value);
+            case 'aggregate_id':
+                $factory = new Factory();
+                return $factory->fromString($field_value);
             case 'occurred_on':
                 return new ilDateTime($field_value, IL_CAL_DATETIME);
-            case 'aggregate_id':
-                return new DomainObjectId($field_value);
             default:
                 return null;
         }

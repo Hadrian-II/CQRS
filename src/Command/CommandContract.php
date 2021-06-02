@@ -14,6 +14,10 @@ namespace srag\CQRS\Command;
  *
  * Commands are handled by exactly one CommandHandler
  */
-interface CommandContract {
-
+interface CommandContract
+{
+    /**
+     * @return int
+     */
+    public function getIssuingUserId() : int;
 }

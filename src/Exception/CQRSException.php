@@ -1,10 +1,12 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Aggregate;
+namespace srag\CQRS\Exception;
+
+use Exception;
 
 /**
- * Interface Entity
+ * Class AbstractDomainEvent
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Adrian Lüthi <al@studer-raimann.ch>
@@ -12,6 +14,6 @@ namespace srag\CQRS\Aggregate;
  * @author  Martin Studer <ms@studer-raimann.ch>
  * @author  Theodor Truffer <tt@studer-raimann.ch>
  */
-interface Entity {
-
+class CQRSException extends Exception
+{
 }

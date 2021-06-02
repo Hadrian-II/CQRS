@@ -40,3 +40,4 @@ We love and live the philosophy of Open Source Software! Most of our development
 Do you use one of our plugins professionally? Secure the timely availability of this plugin for the upcoming ILIAS versions via SLA. Please inform yourself under https://studer-raimann.ch/produkte/ilias-plugins/plugin-sla.
 
 Please note that we only guarantee support and release maintenance for institutions that sign a SLA.
+

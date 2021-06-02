@@ -2,10 +2,9 @@
 
 namespace srag\CQRS\Projection\Persistence;
 
-use ilDBInterface;
-use srag\CQRS\Projection\Persistence\ActiveRecord\LedgerAR;
 use srag\CQRS\Projection\PositionLedger;
 use srag\CQRS\Projection\Projector;
+use srag\CQRS\Projection\Persistence\ActiveRecord\LedgerAR;
 use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
 
 /**
@@ -15,24 +14,6 @@ use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
  */
 class ilDBPositionLedger implements PositionLedger
 {
-
-    /**
-     * @var ilDBInterface
-     */
-    protected $database;
-
-
-    /**
-     * ilDBPositionLedger constructor.
-     *
-     * @param ilDBInterface $database
-     */
-    public function __construct(ilDBInterface $database)
-    {
-        $this->database = $database;
-    }
-
-
     /**
      * @param ProjectorPosition $position
      */

@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace srag\CQRS\Command;
 
+use ILIAS\Data\Result;
+
 /**
  * Interface CommandHandlerContract
  *
  * Command Handler is the place where a command is being dispatched
  * and handled.
  */
-Interface CommandHandlerContract {
-
-	public function handle(CommandContract $command);
+interface CommandHandlerContract
+{
+    public function handle(CommandContract $command) : Result;
 }
