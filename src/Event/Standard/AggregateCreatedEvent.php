@@ -19,21 +19,22 @@ use ilDateTime;
  */
 class AggregateCreatedEvent extends AbstractDomainEvent
 {
+    protected ?array $additional_data;
 
     /**
-     * @var array
-     */
-    protected $additional_data;
-
-    /**
+     * AggregateCreatedEvent constructor.
      * @param Uuid $aggregate_id
      * @param ilDateTime $occurred_on
      * @param int $initiating_user_id
-     * @param array $additional_aata
+     * @param ?array $additional_data
      */
-    public function __construct(Uuid $aggregate_id, ilDateTime $occurred_on, int $initiating_user_id, array $additional_aata = null)
+    public function __construct(
+        Uuid $aggregate_id,
+        ilDateTime $occurred_on,
+        int $initiating_user_id,
+        ?array $additional_data = null)
     {
-        $this->additional_data = $additional_aata;
+        $this->additional_data = $additional_data;
 
         parent::__construct($aggregate_id, $occurred_on, $initiating_user_id);
     }
@@ -41,7 +42,7 @@ class AggregateCreatedEvent extends AbstractDomainEvent
     /**
      * @return array
      */
-    public function getAdditionalData() : array
+    public function getAdditionalData() : ?array
     {
         return $this->additional_data;
     }
