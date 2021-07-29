@@ -15,10 +15,6 @@ use srag\CQRS\Command\CommandContract;
  */
 class OpenAccess implements CommandAccessContract
 {
-    /**
-     * {@inheritDoc}
-     * @see \srag\CQRS\Command\Access\CommandAccessContract::canIssueCommand()
-     */
     public function canIssueCommand(CommandContract $command) : bool
     {
         return true;

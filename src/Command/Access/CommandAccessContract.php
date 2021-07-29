@@ -18,10 +18,6 @@ interface CommandAccessContract
     /**
      * Method to check if the use can perform the command
      * Returns true if access granted, false if not
-     *
-     * @param int $userid
-     * @param CommandContract $command
-     * @return bool
      */
     public function canIssueCommand(CommandContract $command) : bool;
 }

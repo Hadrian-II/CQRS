@@ -17,38 +17,16 @@ use srag\CQRS\Projection\Projector;
  */
 class ProjectorPosition extends AbstractValueObject
 {
+    public Projector $projector;
 
-    /**
-     * @var Projector
-     */
-    public $projector;
-    /**
-     * @var int
-     */
-    public $processed_events;
-    /**
-     * @var string
-     */
-    public $last_position;
-    /**
-     * @var ilDateTime
-     */
-    public $occurred_at;
-    /**
-     * @var ProjectorStatus
-     */
-    public $status;
+    public int $processed_events;
 
+    public string $last_position;
 
-    /**
-     * ProjectorPosition constructor.
-     *
-     * @param Projector       $projector
-     * @param int             $processed_events
-     * @param ilDateTime|null $occurred_at
-     * @param string          $last_position
-     * @param ProjectorStatus $status
-     */
+    public ilDateTime $occurred_at;
+
+    public ProjectorStatus $status;
+
     public function __construct(
         Projector $projector,
         int $processed_events,
@@ -63,13 +41,6 @@ class ProjectorPosition extends AbstractValueObject
         $this->status = $status;
     }
 
-
-    /**
-     * @param Projector $projector
-     *
-     * @return ProjectorPosition
-     * @throws Exception
-     */
     public static function makeNewUnplayed(Projector $projector) : ProjectorPosition
     {
         return new ProjectorPosition(
@@ -81,13 +52,6 @@ class ProjectorPosition extends AbstractValueObject
         );
     }
 
-
-    /**
-     * @param DomainEvent $event
-     *
-     * @return ProjectorPosition
-     * @throws Exception
-     */
     public function played(DomainEvent $event) : ProjectorPosition
     {
         $event_count = $this->processed_events + 1;
@@ -101,11 +65,6 @@ class ProjectorPosition extends AbstractValueObject
         );
     }
 
-
-    /**
-     * @return ProjectorPosition
-     * @throws Exception
-     */
     public function broken() : ProjectorPosition
     {
         return new ProjectorPosition(
@@ -117,13 +76,6 @@ class ProjectorPosition extends AbstractValueObject
         );
     }
 
-
-    /**
-     *  Use when a broken projector was fixed
-     *
-     * @return ProjectorPosition
-     * @throws Exception
-     */
     public function fixed() : ProjectorPosition
     {
         return new ProjectorPosition(
@@ -135,10 +87,6 @@ class ProjectorPosition extends AbstractValueObject
         );
     }
 
-    /**
-     * @return ProjectorPosition
-     * @throws Exception
-     */
     public function stalled() : ProjectorPosition
     {
         return new ProjectorPosition(
@@ -150,21 +98,11 @@ class ProjectorPosition extends AbstractValueObject
         );
     }
 
-
-    /**
-     * @param Projector $current_projector
-     *
-     * @return mixed
-     */
     public function isSame(Projector $current_projector)
     {
         return $this->projector->equals($current_projector);
     }
 
-
-    /**
-     * @return bool
-     */
     public function isFailing()
     {
         return $this->status->is(ProjectorStatus::BROKEN) || $this->status->is(ProjectorStatus::STALLED);

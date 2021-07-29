@@ -13,17 +13,7 @@ namespace srag\CQRS\Event;
  */
 interface DomainEventSubscriber
 {
+    public function handle(DomainEvent $aDomainEvent) : void;
 
-    /**
-     * @param DomainEvent $aDomainEvent
-     */
-    public function handle($aDomainEvent) : void;
-
-
-    /**
-     * @param DomainEvent $aDomainEvent
-     *
-     * @return bool
-     */
-    public function isSubscribedTo($aDomainEvent) : bool;
+    public function isSubscribedTo(DomainEvent $aDomainEvent) : bool;
 }

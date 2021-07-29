@@ -22,10 +22,6 @@ interface CommandHandlerMiddleware
      *
      * The return object is a command of the same type
      * (usually the same as the originally provided command).
-     *
-     * @param CommandContract $command
-     *
-     * @return CommandContract
      */
     public function handle(CommandContract $command) : CommandContract;
 }

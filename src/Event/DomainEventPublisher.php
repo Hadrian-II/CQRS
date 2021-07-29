@@ -13,12 +13,9 @@ namespace srag\CQRS\Event;
  */
 class DomainEventPublisher
 {
-    protected $subscribers;
+    protected array $subscribers;
     protected static $instance = null;
 
-    /**
-     * @return DomainEventPublisher
-     */
     public static function getInstance() : DomainEventPublisher
     {
         if (null === static::$instance) {
@@ -27,28 +24,16 @@ class DomainEventPublisher
         return static::$instance;
     }
 
-
-    /**
-     * DomainEventPublisher constructor.
-     */
     public function __construct()
     {
         $this->subscribers = [];
     }
 
-
-    /**
-     * @param DomainEventSubscriber $aDomainEventSubscriber
-     */
     public function subscribe(DomainEventSubscriber $aDomainEventSubscriber) : void
     {
         $this->subscribers[] = $aDomainEventSubscriber;
     }
 
-
-    /**
-     * @param DomainEvent $anEvent
-     */
     public function publish(DomainEvent $anEvent) : void
     {
         foreach ($this->subscribers as $aSubscriber) {

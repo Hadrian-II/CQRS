@@ -13,20 +13,11 @@ use Exception;
  */
 class ProjectorCollection
 {
-
     /**
-     * @var array
+     * @var Projector[]
      */
-    protected $projectors;
+    protected array $projectors;
 
-
-    /**
-     * ProjectorCollection constructor.
-     *
-     * @param array $projectors
-     *
-     * @throws Exception
-     */
     public function __construct(array $projectors)
     {
         foreach ($projectors as $projector) {
@@ -36,7 +27,6 @@ class ProjectorCollection
         }
         $this->projectors = $projectors;
     }
-
 
     /**
      * @return Projector[]

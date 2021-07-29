@@ -20,37 +20,24 @@ class DomainEvents
     /**
      * @var DomainEvent[]
      */
-    private $events;
+    private array $events;
 
-
-    /**
-     * DomainEvents constructor.
-     */
     public function __construct()
     {
         $this->events = [];
     }
 
-
-    /**
-     * @param DomainEvent $event
-     */
-    public function addEvent(DomainEvent $event)
+    public function addEvent(DomainEvent $event) : void
     {
         $this->events[] = $event;
     }
 
-
-    /**
-     * @param DomainEvents $events
-     */
-    public function addEvents(DomainEvents $events)
+    public function addEvents(DomainEvents $events) : void
     {
         foreach ($events->getEvents() as $event) {
             $this->addEvent($event);
         }
     }
-
 
     /**
      * @return DomainEvent[]

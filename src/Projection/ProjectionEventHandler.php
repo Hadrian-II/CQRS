@@ -13,12 +13,7 @@ use srag\CQRS\Event\DomainEvent;
  */
 class ProjectionEventHandler
 {
-
-    /**
-     * @param $event
-     * @param $projector
-     */
-    public function handle(DomainEvent $event, Projector $projector)
+    public function handle(DomainEvent $event, Projector $projector) : void
     {
         $method = $this->handlerFunctionName($event->getEventName());
         if (method_exists($projector, $method)) {
@@ -26,12 +21,6 @@ class ProjectionEventHandler
         }
     }
 
-
-    /**
-     * @param string $type
-     *
-     * @return string
-     */
     private function handlerFunctionName(string $type) : string
     {
         return "when" . $type;

@@ -9,18 +9,8 @@ namespace srag\CQRS\Projection;
  */
 abstract class Projector
 {
+    protected Projection $projection;
 
-    /**
-     * @var Projection
-     */
-    protected $projection;
-
-
-    /**
-     * Projector constructor.
-     *
-     * @param Projection $projection
-     */
     public function __construct(Projection $projection)
     {
         $this->projection = $projection;

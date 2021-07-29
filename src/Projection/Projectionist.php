@@ -17,28 +17,12 @@ use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
  */
 class Projectionist
 {
+    protected PositionLedger $position_ledger;
 
-    /**
-     * @var PositionLedger
-     */
-    protected $position_ledger;
-    /**
-     * @var EventStore
-     */
-    protected $event_store;
-    /**
-     * @var ilLogger
-     */
-    protected $error_logger;
+    protected EventStore $event_store;
 
+    protected ilLogger $error_logger;
 
-    /**
-     * Projectionist constructor.
-     *
-     * @param PositionLedger $position_ledger
-     * @param EventStore     $event_store
-     * @param ilLogger       $error_logger
-     */
     public function __construct(PositionLedger $position_ledger, EventStore $event_store, ilLogger $error_logger)
     {
         $this->position_ledger = $position_ledger;
@@ -46,12 +30,6 @@ class Projectionist
         $this->error_logger = $error_logger;
     }
 
-
-    /**
-     * @param ProjectorCollection $projector_collection
-     *
-     * @throws Exception
-     */
     public function playProjectors(ProjectorCollection $projector_collection) : void
     {
         $exceptions = [];

@@ -20,20 +20,8 @@ abstract class AbstractValueObject implements JsonSerializable
 {
     const VAR_CLASSNAME = "avo_class_name";
 
-
-    /**
-     * AbstractValueObject constructor.
-     */
-    protected function __construct()
-    {
-    }
-
-
     /**
      * Compares ValueObjects to each other returns true if they are the same
-     *
-     * @param AbstractValueObject $other
-     * @return bool
      */
     public function equals(AbstractValueObject $other) : bool
     {
@@ -42,21 +30,12 @@ abstract class AbstractValueObject implements JsonSerializable
 
     /**
      * Compares if two nullable ValueObjects are equal and returns true if they are
-     *
-     * @param AbstractValueObject $first
-     * @param AbstractValueObject $second
-     * @return bool
      */
     public static function isNullableEqual(?AbstractValueObject $first, ?AbstractValueObject $second) : bool
     {
         return (is_null($first) === is_null($second)) && (is_null($first) || $first->equals($second));
     }
 
-    /**
-     * @param AbstractValueObject[] $first
-     * @param AbstractValueObject[] $second
-     * @return bool
-     */
     public static function isNullableArrayEqual(?array $first, ?array $second) : bool
     {
         if (is_null($first) !== is_null($second)) {
@@ -99,13 +78,6 @@ abstract class AbstractValueObject implements JsonSerializable
         return $json;
     }
 
-    /**
-     * @param $field_name
-     *
-     * @param $field_value
-     *
-     * @return mixed
-     */
     protected function sleep($field_value)
     {
         if ($field_value instanceof AbstractValueObject) {
@@ -118,15 +90,12 @@ abstract class AbstractValueObject implements JsonSerializable
         return $field_value;
     }
 
-    /**
-     * @return string
-     */
     public function serialize() : string
     {
         return json_encode($this->jsonSerialize());
     }
 
-    public static function deserialize(?string $data)
+    public static function deserialize(?string $data) : ?AbstractValueObject
     {
         if ($data === null) {
             return null;
@@ -183,10 +152,6 @@ abstract class AbstractValueObject implements JsonSerializable
         }
     }
 
-    /**
-     * @param string $key
-     * @param mixed $value
-     */
     protected static function deserializeValue(string $key, $value)
     {
         //virtual method

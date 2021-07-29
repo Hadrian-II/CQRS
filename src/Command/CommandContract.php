@@ -16,8 +16,5 @@ namespace srag\CQRS\Command;
  */
 interface CommandContract
 {
-    /**
-     * @return int
-     */
     public function getIssuingUserId() : int;
 }

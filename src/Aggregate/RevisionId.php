@@ -19,24 +19,13 @@ namespace srag\CQRS\Aggregate;
  */
 class RevisionId extends AbstractValueObject
 {
+    protected string $key;
 
-    /** @var string */
-    protected $key;
+    protected string $algorithm;
 
-    /** @var string */
-    protected $algorithm;
-    
-    /** @var string */
-    protected $name;
+    protected string $name;
 
-    /**
-     * RevisionId generator function.
-     *
-     * @param string $key
-     * @param string $algorithm
-     * @param string $name
-     */
-    public static function create(string $key, string $algorithm, string $name)
+    public static function create(string $key, string $algorithm, string $name) : RevisionId
     {
         $revision_id = new RevisionId();
         $revision_id->key = $key;
@@ -45,25 +34,16 @@ class RevisionId extends AbstractValueObject
         return $revision_id;
     }
 
-    /**
-     * @return string
-     */
     public function GetKey() : string
     {
         return $this->key;
     }
-    
-    /**
-     * @return string
-     */
+
     public function getAlgorithm() : string
     {
         return $this->algorithm;
     }
-    
-    /**
-     * @return string
-     */
+
     public function getName() : string
     {
         return $this->name;

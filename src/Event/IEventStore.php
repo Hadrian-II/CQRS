@@ -16,30 +16,11 @@ use ILIAS\Data\UUID\Uuid;
  */
 interface IEventStore
 {
-    /**
-     * @param DomainEvents $events
-     *
-     * @return void
-     */
     public function commit(DomainEvents $events) : void;
 
-    /**
-     * @param Uuid $id
-     * @return bool
-     */
     public function aggregateExists(Uuid $id) : bool;
 
-    /**
-     * @param Uuid $id
-     *
-     * @return DomainEvents
-     */
     public function getAggregateHistoryFor(Uuid $id) : DomainEvents;
 
-    /**
-     * @param ?string $from_id
-     *
-     * @return DomainEvents
-     */
     public function getEventStream(?string $from_id = null) : DomainEvents;
 }

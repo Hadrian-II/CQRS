@@ -23,37 +23,21 @@ abstract class AbstractAggregateRoot
 {
     const APPLY_PREFIX = 'apply';
 
-    /**
-     * @var Uuid
-     */
-    protected $aggregate_id;
+    protected Uuid $aggregate_id;
 
-    /**
-     * @var DomainEvents
-     */
-    private $recordedEvents;
+    private DomainEvents $recordedEvents;
 
-    /**
-     * @var bool
-     */
-    private $is_deleted;
+    private bool $is_deleted;
 
-    /**
-     * AbstractEventSourcedAggregateRoot constructor.
-     */
     protected function __construct()
     {
         $this->recordedEvents = new DomainEvents();
     }
 
-
-    /**
-     * @param DomainEvent $event
-     */
-    protected function ExecuteEvent(DomainEvent $event)
+    protected function ExecuteEvent(DomainEvent $event) : void
     {
         if ($this->is_deleted) {
-            return new CQRSException("Action on deleted Aggregate not allowed");
+            throw new CQRSException("Action on deleted Aggregate not allowed");
         }
 
         // apply results of event to class, most events should result in some changes
@@ -63,20 +47,12 @@ abstract class AbstractAggregateRoot
         $this->recordEvent($event);
     }
 
-
-    /**
-     * @param DomainEvent $event
-     */
-    protected function recordEvent(DomainEvent $event)
+    protected function recordEvent(DomainEvent $event) : void
     {
         $this->recordedEvents->addEvent($event);
     }
 
-
-    /**
-     * @param DomainEvent $event
-     */
-    protected function applyEvent(DomainEvent $event)
+    protected function applyEvent(DomainEvent $event) : void
     {
         $action_handler = $this->getHandlerName($event);
 
@@ -85,63 +61,36 @@ abstract class AbstractAggregateRoot
         }
     }
 
-    /**
-     * @param AggregateCreatedEvent $event
-     */
-    protected function applyAggregateCreatedEvent(DomainEvent $event)
+    protected function applyAggregateCreatedEvent(DomainEvent $event) : void
     {
         $this->aggregate_id = $event->getAggregateId();
     }
 
-    /**
-     * @param AggregateDeletedEvent $event
-     */
-    protected function applyAggregateDeletedEvent(DomainEvent $event)
+    protected function applyAggregateDeletedEvent(DomainEvent $event) : void
     {
         $this->is_deleted = true;
     }
 
-    /**
-     * @param DomainEvent $event
-     *
-     * @return string
-     */private function getHandlerName(DomainEvent $event)
+    private function getHandlerName(DomainEvent $event) : string
     {
         return self::APPLY_PREFIX . join('', array_slice(explode('\\', get_class($event)), -1));
     }
 
-
-    /**
-     * @return DomainEvents
-     */
     public function getRecordedEvents() : DomainEvents
     {
         return $this->recordedEvents;
     }
 
-
-    /**
-     *
-     */
     public function clearRecordedEvents() : void
     {
         $this->recordedEvents = new DomainEvents();
     }
 
-
-    /**
-     * @return Uuid
-     */
     public function getAggregateId() : Uuid
     {
         return $this->aggregate_id;
     }
 
-    /**
-     * @param DomainEvents $event_history
-     *
-     * @return AbstractAggregateRoot
-     */
     public static function reconstitute(DomainEvents $event_history) : AbstractAggregateRoot
     {
         $aggregate_root = new static();

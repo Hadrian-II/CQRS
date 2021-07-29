@@ -15,6 +15,5 @@ interface PositionLedger
 {
     public function store(ProjectorPosition $position) : void;
 
-
     public function fetch(Projector $projector) : ?ProjectorPosition;
 }

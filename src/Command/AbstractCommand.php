@@ -14,20 +14,13 @@ namespace srag\CQRS\Command;
  */
 abstract class AbstractCommand implements CommandContract
 {
-    /**
-     * @var int
-     */
-    protected $issuing_user_id;
+    protected int $issuing_user_id;
 
     public function __construct(int $issuing_user_id)
     {
         $this->issuing_user_id = $issuing_user_id;
     }
 
-
-    /**
-     * @return int
-     */
     public function getIssuingUserId() : int
     {
         return $this->issuing_user_id;

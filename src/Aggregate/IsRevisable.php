@@ -15,13 +15,7 @@ namespace srag\CQRS\Aggregate;
  */
 interface IsRevisable
 {
-    /**
-     * @return RevisionId revision id of object
-     */
     public function getRevisionId() : ?RevisionId;
 
-    /**
-     * @param RevisionId $id
-     */
-    public function setRevisionId(RevisionId $id, int $user_id);
+    public function setRevisionId(RevisionId $id, int $user_id) : void;
 }

@@ -18,32 +18,14 @@ use srag\CQRS\Exception\CQRSException;
  */
 abstract class AbstractDomainEvent implements DomainEvent
 {
+    protected Uuid $event_id;
 
-    /**
-     * @var Uuid
-     */
-    protected $event_id;
-    /**
-     * @var string
-     */
-    protected $aggregate_id;
-    /**
-     * @var ilDateTime;
-     */
-    protected $occurred_on;
-    /**
-     * @var int
-     */
-    protected $initiating_user_id;
+    protected string $aggregate_id;
 
+    protected ilDateTime $occurred_on;
 
-    /**
-     * AbstractDomainEvent constructor.
-     *
-     * @param Uuid $aggregate_id
-     * @param ilDateTime     $occurred_on
-     * @param int            $initiating_user_id
-     */
+    protected int $initiating_user_id;
+
     protected function __construct(Uuid $aggregate_id, ilDateTime $occurred_on, int $initiating_user_id)
     {
         $this->aggregate_id = $aggregate_id;
@@ -51,30 +33,20 @@ abstract class AbstractDomainEvent implements DomainEvent
         $this->initiating_user_id = $initiating_user_id;
     }
 
-
-    /**
-     * @return string
-     */
     public function getEventId() : string
     {
         return $this->event_id;
     }
 
-
     /**
      * The Aggregate this event belongs to.
-     *
-     * @return Uuid
      */
     public function getAggregateId() : Uuid
     {
         return $this->aggregate_id;
     }
 
-
     /**
-     * @return string
-     *
      * Add a Constant EVENT_NAME to your class: Name it: [aggregate].[event]
      * e.g. 'question.created'
      */
@@ -83,45 +55,20 @@ abstract class AbstractDomainEvent implements DomainEvent
         return get_called_class();
     }
 
-
-    /**
-     * @return ilDateTime
-     */
     public function getOccurredOn() : ilDateTime
     {
         return $this->occurred_on;
     }
 
-
-    /**
-     * @return int
-     */
     public function getInitiatingUserId() : int
     {
         return $this->initiating_user_id;
     }
 
-
-    /**
-     * @return string
-     */
     abstract public function getEventBody() : string;
 
-    /**
-     * @return int
-     */
     abstract public static function getEventVersion() : int;
 
-    /**
-     * @param string $event_id
-     * @param int $event_version
-     * @param Uuid $aggregate_id
-     * @param int $initiating_user_id
-     * @param ilDateTime $occurred_on
-     * @param string $event_body
-     * @throws CQRSException
-     * @return AbstractDomainEvent
-     */
     public static function restore(
         string $event_id,
         int $event_version,
@@ -142,11 +89,7 @@ abstract class AbstractDomainEvent implements DomainEvent
         return $restored;
     }
 
-    /**
-     * @param string $event_body
-     * @param int $event_version
-     */
-    private function processEventBody(string $event_body, int $event_version)
+    private function processEventBody(string $event_body, int $event_version) : void
     {
         if (static::getEventVersion() === $event_version) {
             $this->restoreEventBody($event_body);
@@ -155,14 +98,8 @@ abstract class AbstractDomainEvent implements DomainEvent
         }
     }
 
-    /**
-     * @param string $event_body
-     */
     abstract protected function restoreEventBody(string $event_body) : void;
 
-    /**
-     * @return DomainEvent
-     */
     protected function restoreOldEventBody(string $old_event_body, int $old_version) : DomainEvent
     {
         throw new CQRSException("Used ILIAS not compatible with available EventStore");

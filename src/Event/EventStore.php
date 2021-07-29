@@ -19,12 +19,6 @@ use ILIAS\Data\UUID\Uuid;
  */
 abstract class EventStore implements IEventStore
 {
-
-    /**
-     * @param DomainEvents $events
-     *
-     * @return void
-     */
     public function commit(DomainEvents $events) : void
     {
         $uuid_factory = new Factory();
@@ -49,10 +43,6 @@ abstract class EventStore implements IEventStore
         }
     }
 
-    /**
-     * @param Uuid $id
-     * @return bool
-     */
     public function aggregateExists(Uuid $id) : bool
     {
         global $DIC;
@@ -68,11 +58,6 @@ abstract class EventStore implements IEventStore
         return $DIC->database()->fetchAssoc($res)['count'] > 0;
     }
 
-    /**
-     * @param Uuid $id
-     *
-     * @return DomainEvents
-     */
     public function getAggregateHistoryFor(Uuid $id) : DomainEvents
     {
         global $DIC;
@@ -108,11 +93,6 @@ abstract class EventStore implements IEventStore
         return $event_stream;
     }
 
-    /**
-     * @param ?string $from_id
-     *
-     * @return DomainEvents
-     */
     public function getEventStream(?string $from_id = null) : DomainEvents
     {
         global $DIC;
@@ -147,9 +127,6 @@ abstract class EventStore implements IEventStore
         return $event_stream;
     }
 
-    /**
-     * @return string
-     */
     protected function getStorageName() : string
     {
         return call_user_func($this->getEventArClass() . '::returnDbTableName');
@@ -157,8 +134,6 @@ abstract class EventStore implements IEventStore
 
     /**
      * Gets the Active Record class that is used for the event store
-     *
-     * @return string
      */
     abstract protected function getEventArClass() : string;
 }

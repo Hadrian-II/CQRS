@@ -18,7 +18,7 @@ class RoleAccess implements CommandAccessContract
     /**
      * @var int[]
      */
-    private $allowed_roles;
+    private array $allowed_roles;
     
     /**
      * @param array $roles  Roles that are allowed to perform command
@@ -27,11 +27,7 @@ class RoleAccess implements CommandAccessContract
     {
         $this->allowed_roles = $roles;
     }
-    
-    /**
-     * {@inheritDoc}
-     * @see \srag\CQRS\Command\Access\CommandAccessContract::canIssueCommand()
-     */
+
     public function canIssueCommand(CommandContract $command) : bool
     {
         global $DIC;

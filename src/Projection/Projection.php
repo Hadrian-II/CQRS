@@ -11,12 +11,7 @@ use ilDBInterface;
  */
 abstract class Projection
 {
-
-    /**
-     * @var ilDBInterface
-     */
-    protected $database;
-
+    protected ilDBInterface $database;
 
     public function __construct(ilDBInterface $database)
     {

@@ -20,37 +20,15 @@ use ILIAS\Data\UUID\Uuid;
 interface DomainEvent
 {
 
-    /**
-     * @return string
-     */
     public function getEventId() : string;
 
-    /**
-     * The Aggregate this event belongs to.
-     *
-     * @return Uuid
-     */
     public function getAggregateId() : Uuid;
 
-    /**
-     * @return string
-     */
     public function getEventName() : string;
 
-    /**
-     * @return ilDateTime
-     */
     public function getOccurredOn() : ilDateTime;
 
-
-    /**
-     * @return int
-     */
     public function getInitiatingUserId() : int;
 
-
-    /**
-     * @return string
-     */
     public function getEventBody() : string;
 }

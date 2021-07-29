@@ -14,9 +14,6 @@ use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
  */
 class ilDBPositionLedger implements PositionLedger
 {
-    /**
-     * @param ProjectorPosition $position
-     */
     public function store(ProjectorPosition $position) : void
     {
         $ledger_ar = new LedgerAR();
@@ -28,12 +25,6 @@ class ilDBPositionLedger implements PositionLedger
         $ledger_ar->store();
     }
 
-
-    /**
-     * @param Projector $projector
-     *
-     * @return ProjectorPosition|null
-     */
     public function fetch(Projector $projector) : ?ProjectorPosition
     {
         /** @var LedgerAR $ledger_ar */

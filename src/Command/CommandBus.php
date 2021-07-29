@@ -17,11 +17,7 @@ use srag\CQRS\Exception\CQRSException;
  */
 class CommandBus implements CommandBusContract
 {
-
-    /**
-     *  @var array
-     */
-    private $middlewares;
+    private array $middlewares;
 
     /**
      * @var string[]
@@ -33,11 +29,6 @@ class CommandBus implements CommandBusContract
         $this->middlewares = [];
     }
 
-
-    /**
-     * @param CommandContract $command
-     *
-     */
     public function handle(CommandContract $command) : Result
     {
         $class = get_class($command);
@@ -64,20 +55,12 @@ class CommandBus implements CommandBusContract
     /**
      * Appends new middleware for this message bus.
      * Should only be used at configuration time.
-     *
-     * @param CommandHandlerMiddleware $middleware
-     *
-     * @return void
      */
     public function appendMiddleware(CommandHandlerMiddleware $middleware) : void
     {
         $this->middlewares[] = $middleware;
     }
 
-    /**
-     * @param CommandHandlerContract $handler
-     * @param string $command_class
-     */
     public function registerCommand(CommandConfiguration $config)
     {
         $this->command_handler_map[$config->getClass()] = $config;

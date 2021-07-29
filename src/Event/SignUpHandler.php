@@ -13,15 +13,7 @@ namespace srag\CQRS\Event;
  */
 interface SignUpHandler
 {
-
-    /**
-     * EventSignUpHandler constructor.
-     */
     public function __construct();
 
-
-    /**
-     * @param $command
-     */
     public function handle($command) : void;
 }

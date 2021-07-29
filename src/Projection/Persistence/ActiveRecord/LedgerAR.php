@@ -17,15 +17,10 @@ class LedgerAR extends ActiveRecord
 {
     const TABLE_NAME = 'sr_projection_ledger';
 
-
-    /**
-     * @return string
-     */
-    public function getConnectorContainerName()
+    public function getConnectorContainerName() : string
     {
         return self::TABLE_NAME;
     }
-
 
     /**
      * @var string
@@ -36,6 +31,7 @@ class LedgerAR extends ActiveRecord
      * @con_length     200
      */
     public $projector_class;
+
     /**
      * @var int
      *
@@ -45,6 +41,7 @@ class LedgerAR extends ActiveRecord
      * @con_length     8
      */
     public $processed_events;
+
     /**
      * @var string
      *
@@ -53,6 +50,7 @@ class LedgerAR extends ActiveRecord
      * @con_length     200
      */
     public $last_position;
+
     /**
      * @var ilDateTime
      *
@@ -60,6 +58,7 @@ class LedgerAR extends ActiveRecord
      * @con_fieldtype  timestamp
      */
     public $occurred_at;
+
     /**
      * @var ProjectorStatus
      *
@@ -70,12 +69,6 @@ class LedgerAR extends ActiveRecord
      */
     public $status;
 
-
-    /**
-     * @param $field_name
-     *
-     * @return int|mixed|string|null
-     */
     public function sleep($field_name)
     {
         switch ($field_name) {
@@ -90,15 +83,6 @@ class LedgerAR extends ActiveRecord
         }
     }
 
-
-    /**
-     * @param $field_name
-     * @param $field_value
-     *
-     * @return ilDateTime|mixed|string|ProjectorStatus|null
-     * @throws ilDateTimeException
-     * @throws Exception
-     */
     public function wakeUp($field_name, $field_value)
     {
         switch ($field_name) {

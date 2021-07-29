@@ -14,20 +14,12 @@ use ILIAS\Data\Result;
  */
 interface CommandBusContract
 {
-
-    /**
-     * @param CommandContract $command
-     */
     public function handle(CommandContract $command) : Result;
 
 
     /**
      * Appends new middleware for this message bus.
      * Should only be used at configuration time.
-     *
-     * @param CommandHandlerMiddleware $middleware
-     *
-     * @return void
      */
     public function appendMiddleware(CommandHandlerMiddleware $middleware) : void;
 }

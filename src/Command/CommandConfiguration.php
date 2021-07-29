@@ -15,52 +15,29 @@ use srag\CQRS\Command\Access\CommandAccessContract;
  */
 class CommandConfiguration
 {
-    /**
-     * @var string
-     */
-    private $class;
-    
-    /**
-     * @var CommandHandlerContract
-     */
-    private $handler;
-    
-    /**
-     * @var CommandAccessContract
-     */
-    private $access;
-    
-    /**
-     * @param string $class
-     * @param CommandHandlerContract $handler
-     * @param CommandAccessContract $access
-     */
+    private string $class;
+
+    private CommandHandlerContract $handler;
+
+    private CommandAccessContract $access;
+
     public function __construct(string $class, CommandHandlerContract $handler, CommandAccessContract $access)
     {
         $this->class = $class;
         $this->handler = $handler;
         $this->access = $access;
     }
-    
-    /**
-     * @return string
-     */
+
     public function getClass() : string
     {
         return $this->class;
     }
-    
-    /**
-     * @return CommandHandlerContract
-     */
+
     public function getHandler() : CommandHandlerContract
     {
         return $this->handler;
     }
-    
-    /**
-     * @return CommandAccessContract
-     */
+
     public function getAccess() : CommandAccessContract
     {
         return $this->access;

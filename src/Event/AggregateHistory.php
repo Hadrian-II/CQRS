@@ -16,21 +16,8 @@ use Exception;
  */
 final class AggregateHistory extends DomainEvents
 {
+    private string $aggregate_Id;
 
-    /**
-     * @var string
-     */
-    private $aggregate_Id;
-
-
-    /**
-     * AggregateHistory constructor.
-     *
-     * @param string   $aggregate_Id
-     * @param DomainEvent[] $events
-     *
-     * @throws Exception
-     */
     public function __construct(string $aggregate_Id, array $events)
     {
         /** @var $event DomainEvent */
@@ -48,21 +35,11 @@ final class AggregateHistory extends DomainEvents
         $this->aggregate_Id = $aggregate_Id;
     }
 
-
-    /**
-     * @return string
-     */
     public function getAggregateId() : string
     {
         return $this->aggregate_Id;
     }
 
-
-    /**
-     * @param DomainEvent $domainEvent
-     *
-     * @throws Exception
-     */
     public function append(DomainEvent $domainEvent)
     {
         $this->addEvent($domainEvent);
