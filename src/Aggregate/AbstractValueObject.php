@@ -126,7 +126,7 @@ abstract class AbstractValueObject implements JsonSerializable
                         $object->$key = self::createFromArray($value);
                     }
                     else {
-                        $object->$key = static::deserializeValue($key, $value);
+                        $object->$key = call_user_func($data[self::VAR_CLASSNAME] . '::deserializeValue', $key, $value);
                     }
                 }
             }
