@@ -27,7 +27,7 @@ abstract class AbstractAggregateRoot
 
     private DomainEvents $recordedEvents;
 
-    private bool $is_deleted;
+    private bool $is_deleted = false;
 
     protected function __construct()
     {

@@ -3,6 +3,7 @@
 
 namespace srag\CQRS\Event;
 
+use ILIAS\Data\UUID\Factory;
 use ILIAS\Data\UUID\Uuid;
 use ilDateTime;
 use srag\CQRS\Exception\CQRSException;
@@ -20,7 +21,7 @@ abstract class AbstractDomainEvent implements DomainEvent
 {
     protected Uuid $event_id;
 
-    protected string $aggregate_id;
+    protected Uuid $aggregate_id;
 
     protected ilDateTime $occurred_on;
 
@@ -77,8 +78,10 @@ abstract class AbstractDomainEvent implements DomainEvent
         ilDateTime $occurred_on,
         string $event_body
     ) : AbstractDomainEvent {
+        $factory = new Factory();
+
         $restored = new static($aggregate_id, $occurred_on, $initiating_user_id);
-        $restored->event_id = $event_id;
+        $restored->event_id = $factory->fromString($event_id);
 
         if (static::getEventVersion() < $event_version) {
             throw new CQRSException('Event store contains future versions of Events, ILIAS update necessary');
