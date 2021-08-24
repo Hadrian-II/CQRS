@@ -4,6 +4,7 @@ namespace srag\CQRS\Aggregate;
 
 use DateTimeZone;
 use DateTimeImmutable;
+use ILIAS\Data\UUID\Factory;
 use JsonSerializable;
 use ILIAS\Data\UUID\Uuid;
 
@@ -19,6 +20,7 @@ use ILIAS\Data\UUID\Uuid;
 abstract class AbstractValueObject implements JsonSerializable
 {
     const VAR_CLASSNAME = "avo_class_name";
+    const UUID_CODE = "avo_uuid";
 
     /**
      * Compares ValueObjects to each other returns true if they are the same
@@ -84,7 +86,14 @@ abstract class AbstractValueObject implements JsonSerializable
             return $field_value->jsonSerialize();
         }
         else if ($field_value instanceof Uuid) {
-            return $field_value->toString();
+            return [
+                self::UUID_CODE => $field_value->toString()
+            ] ;
+        }
+        else if (is_array($field_value)) {
+            return array_map(function($value) {
+                return $this->sleep($value);
+            }, $field_value);
         }
 
         return $field_value;
@@ -140,6 +149,11 @@ abstract class AbstractValueObject implements JsonSerializable
                     $data['date'],
                     new DateTimeZone($data['timezone'])
                 );
+            }
+
+            if (array_key_exists(self::UUID_CODE, $data)) {
+                $factory = new Factory();
+                return $factory->fromString($data[self::UUID_CODE]);
             }
 
             foreach ($data as $key => $value) {
