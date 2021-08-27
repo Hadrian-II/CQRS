@@ -203,7 +203,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
     /**
      * @throws ilException
      */
-    public function store()
+    public function store() : void
     {
         throw new ilException("Store is not supported - It's only possible to add new records to this store!");
     }
@@ -212,7 +212,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
     /**
      * @throws ilException
      */
-    public function update()
+    public function update() : void
     {
         throw new ilException("Update is not supported - It's only possible to add new records to this store!");
     }
@@ -221,7 +221,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
     /**
      * @throws ilException
      */
-    public function delete()
+    public function delete() : void
     {
         throw new ilException("Delete is not supported - It's only possible to add new records to this store!");
     }
@@ -230,7 +230,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
     /**
      * @throws ilException
      */
-    public function save()
+    public function save() : void
     {
         throw new ilException("Save is not supported - It's only possible to add new records to this store!");
     }
