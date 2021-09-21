@@ -1,13 +1,13 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Aggregate;
+namespace Fluxlabs\CQRS\Aggregate;
 
-use srag\CQRS\Event\DomainEvent;
-use srag\CQRS\Event\DomainEvents;
-use srag\CQRS\Event\Standard\AggregateCreatedEvent;
-use srag\CQRS\Exception\CQRSException;
-use srag\CQRS\Event\Standard\AggregateDeletedEvent;
+use Fluxlabs\CQRS\Event\DomainEvent;
+use Fluxlabs\CQRS\Event\DomainEvents;
+use Fluxlabs\CQRS\Event\Standard\AggregateCreatedEvent;
+use Fluxlabs\CQRS\Exception\CQRSException;
+use Fluxlabs\CQRS\Event\Standard\AggregateDeletedEvent;
 use ILIAS\Data\UUID\Uuid;
 
 /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CQRS\Projection;
+namespace Fluxlabs\CQRS\Projection;
 
 use ilDBInterface;
 

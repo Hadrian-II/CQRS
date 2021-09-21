@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CQRS\Projection\ValueObjects;
+namespace Fluxlabs\CQRS\Projection\ValueObjects;
 
 /**
  * Class ProjectorMode

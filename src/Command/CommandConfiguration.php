@@ -1,8 +1,8 @@
 <?php
 
-namespace srag\CQRS\Command;
+namespace Fluxlabs\CQRS\Command;
 
-use srag\CQRS\Command\Access\CommandAccessContract;
+use Fluxlabs\CQRS\Command\Access\CommandAccessContract;
 
 /**
  * Class CommandConfiguration

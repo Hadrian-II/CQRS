@@ -1,7 +1,7 @@
 <?php
 /* Copyright (c) 2019 - Martin Studer <ms@studer-raimann.ch> - Extended GPL, see LICENSE */
 
-namespace srag\CQRS\Command;
+namespace Fluxlabs\CQRS\Command;
 
 /**
  * Class CommandHandlerMiddleware

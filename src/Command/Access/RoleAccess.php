@@ -1,8 +1,8 @@
 <?php
 
-namespace srag\CQRS\Command\Access;
+namespace Fluxlabs\CQRS\Command\Access;
 
-use srag\CQRS\Command\CommandContract;
+use Fluxlabs\CQRS\Command\CommandContract;
 
 /**
  * Class RoleAccess

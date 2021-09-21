@@ -1,7 +1,7 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Event;
+namespace Fluxlabs\CQRS\Event;
 
 /**
  * Class DomainEvents

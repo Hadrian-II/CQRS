@@ -2,7 +2,7 @@
 /* Copyright (c) 2019 - Martin Studer <ms@studer-raimann.ch> - Extended GPL, see LICENSE */
 declare(strict_types=1);
 
-namespace srag\CQRS\Command;
+namespace Fluxlabs\CQRS\Command;
 
 use ILIAS\Data\Result;
 

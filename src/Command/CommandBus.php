@@ -1,10 +1,10 @@
 <?php
 
-namespace srag\CQRS\Command;
+namespace Fluxlabs\CQRS\Command;
 
 use ILIAS\Data\Result;
 use ILIAS\Data\Result\Error;
-use srag\CQRS\Exception\CQRSException;
+use Fluxlabs\CQRS\Exception\CQRSException;
 
 /**
  * Class CommandBus

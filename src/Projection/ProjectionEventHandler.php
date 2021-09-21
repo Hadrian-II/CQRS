@@ -1,8 +1,8 @@
 <?php
 
-namespace srag\CQRS\Projection;
+namespace Fluxlabs\CQRS\Projection;
 
-use srag\CQRS\Event\DomainEvent;
+use Fluxlabs\CQRS\Event\DomainEvent;
 
 /**
  * Class ProjectionEventHandler

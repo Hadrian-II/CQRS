@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CQRS\Aggregate;
+namespace Fluxlabs\CQRS\Aggregate;
 
 use DateTimeZone;
 use DateTimeImmutable;

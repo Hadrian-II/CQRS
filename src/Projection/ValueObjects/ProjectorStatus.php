@@ -1,9 +1,9 @@
 <?php
 
-namespace srag\CQRS\Projection\ValueObjects;
+namespace Fluxlabs\CQRS\Projection\ValueObjects;
 
 use Exception;
-use srag\CQRS\Aggregate\AbstractValueObject;
+use Fluxlabs\CQRS\Aggregate\AbstractValueObject;
 
 /**
  * Class ProjectorStatus

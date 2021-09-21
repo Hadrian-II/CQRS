@@ -1,11 +1,11 @@
 <?php
 
-namespace srag\CQRS\Projection\Persistence;
+namespace Fluxlabs\CQRS\Projection\Persistence;
 
-use srag\CQRS\Projection\PositionLedger;
-use srag\CQRS\Projection\Projector;
-use srag\CQRS\Projection\Persistence\ActiveRecord\LedgerAR;
-use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
+use Fluxlabs\CQRS\Projection\PositionLedger;
+use Fluxlabs\CQRS\Projection\Projector;
+use Fluxlabs\CQRS\Projection\Persistence\ActiveRecord\LedgerAR;
+use Fluxlabs\CQRS\Projection\ValueObjects\ProjectorPosition;
 
 /**
  * Class ilDBPositionLedger

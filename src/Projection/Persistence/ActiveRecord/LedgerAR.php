@@ -1,12 +1,12 @@
 <?php
 
-namespace srag\CQRS\Projection\Persistence\ActiveRecord;
+namespace Fluxlabs\CQRS\Projection\Persistence\ActiveRecord;
 
 use ActiveRecord;
 use Exception;
 use ilDateTime;
 use ilDateTimeException;
-use srag\CQRS\Projection\ValueObjects\ProjectorStatus;
+use Fluxlabs\CQRS\Projection\ValueObjects\ProjectorStatus;
 
 /**
  * Class LedgerAR

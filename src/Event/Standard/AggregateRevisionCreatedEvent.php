@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace srag\CQRS\Event\Standard;
+namespace Fluxlabs\CQRS\Event\Standard;
 
 use ilDateTime;
-use srag\CQRS\Aggregate\RevisionId;
-use srag\CQRS\Event\AbstractDomainEvent;
+use Fluxlabs\CQRS\Aggregate\RevisionId;
+use Fluxlabs\CQRS\Event\AbstractDomainEvent;
 use ILIAS\Data\UUID\Uuid;
 
 /**

@@ -1,9 +1,9 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Event;
+namespace Fluxlabs\CQRS\Event;
 
-use srag\CQRS\Exception\CQRSException;
+use Fluxlabs\CQRS\Exception\CQRSException;
 use ilDateTime;
 use ILIAS\Data\UUID\Factory;
 use ILIAS\Data\UUID\Uuid;

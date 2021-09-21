@@ -1,12 +1,12 @@
 <?php
 
-namespace srag\CQRS\Projection;
+namespace Fluxlabs\CQRS\Projection;
 
 use Exception;
 use ilException;
 use ilLogger;
-use srag\CQRS\Event\EventStore;
-use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
+use Fluxlabs\CQRS\Event\EventStore;
+use Fluxlabs\CQRS\Projection\ValueObjects\ProjectorPosition;
 
 /**
  * Class Projectionist

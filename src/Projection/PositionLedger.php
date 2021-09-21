@@ -1,8 +1,8 @@
 <?php
 
-namespace srag\CQRS\Projection;
+namespace Fluxlabs\CQRS\Projection;
 
-use srag\CQRS\Projection\ValueObjects\ProjectorPosition;
+use Fluxlabs\CQRS\Projection\ValueObjects\ProjectorPosition;
 
 /**
  * Class PositionLedger

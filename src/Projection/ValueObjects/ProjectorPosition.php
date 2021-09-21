@@ -1,12 +1,12 @@
 <?php
 
-namespace srag\CQRS\Projection\ValueObjects;
+namespace Fluxlabs\CQRS\Projection\ValueObjects;
 
 use Exception;
 use ilDateTime;
-use srag\CQRS\Aggregate\AbstractValueObject;
-use srag\CQRS\Event\DomainEvent;
-use srag\CQRS\Projection\Projector;
+use Fluxlabs\CQRS\Aggregate\AbstractValueObject;
+use Fluxlabs\CQRS\Event\DomainEvent;
+use Fluxlabs\CQRS\Projection\Projector;
 
 /**
  * Class ProjectorPosition

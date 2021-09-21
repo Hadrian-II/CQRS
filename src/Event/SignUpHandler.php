@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CQRS\Event;
+namespace Fluxlabs\CQRS\Event;
 
 /**
  * Interface SignUpHandler

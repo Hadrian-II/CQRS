@@ -1,7 +1,7 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Exception;
+namespace Fluxlabs\CQRS\Exception;
 
 use Exception;
 

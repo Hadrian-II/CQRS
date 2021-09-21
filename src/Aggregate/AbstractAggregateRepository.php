@@ -1,12 +1,12 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Aggregate;
+namespace Fluxlabs\CQRS\Aggregate;
 
 use ILIAS\Data\UUID\Uuid;
 use ilGlobalCache;
-use srag\CQRS\Event\DomainEvents;
-use srag\CQRS\Event\IEventStore;
+use Fluxlabs\CQRS\Event\DomainEvents;
+use Fluxlabs\CQRS\Event\IEventStore;
 
 /**
  * Class AbstractAggregateRepository

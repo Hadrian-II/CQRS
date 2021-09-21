@@ -1,9 +1,9 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Event\Standard;
+namespace Fluxlabs\CQRS\Event\Standard;
 
-use srag\CQRS\Event\AbstractDomainEvent;
+use Fluxlabs\CQRS\Event\AbstractDomainEvent;
 use ilDateTime;
 use ILIAS\Data\UUID\Uuid;
 

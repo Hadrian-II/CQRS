@@ -1,10 +1,10 @@
 <?php
 /* Copyright (c) 2019 Extended GPL, see docs/LICENSE */
 
-namespace srag\CQRS\Event\Standard;
+namespace Fluxlabs\CQRS\Event\Standard;
 
-use srag\CQRS\Event\AbstractDomainEvent;
-use srag\CQRS\Aggregate\AbstractValueObject;
+use Fluxlabs\CQRS\Event\AbstractDomainEvent;
+use Fluxlabs\CQRS\Aggregate\AbstractValueObject;
 use ILIAS\Data\UUID\Uuid;
 use ilDateTime;
 
