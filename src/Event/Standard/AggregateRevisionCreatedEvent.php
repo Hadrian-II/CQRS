@@ -24,12 +24,11 @@ class AggregateRevisionCreatedEvent extends AbstractDomainEvent
     public function __construct(
         Uuid $aggregate_id,
         ilDateTime $occurred_on,
-        int $initiating_user_id,
         RevisionId $revision_id = null)
     {
         $this->revision_id = $revision_id;
 
-        parent::__construct($aggregate_id, $occurred_on, $initiating_user_id);
+        parent::__construct($aggregate_id, $occurred_on);
     }
 
     public function getRevisionId() : RevisionId

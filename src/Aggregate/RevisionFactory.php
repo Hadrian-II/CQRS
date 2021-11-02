@@ -23,13 +23,9 @@ class RevisionFactory
     /**
      * Revisable object will be stamped with a valid RevisionId
      */
-    public static function SetRevisionId(IsRevisable $entity, string $revision_name, ?int $user_id = null)
+    public static function SetRevisionId(IsRevisable $entity, string $revision_name)
     {
-        global $DIC;
-        
-        $current_user = $user_id ?? $DIC->user()->getId();
-        
-        $entity->setRevisionId(self::GenerateRevisionId($entity, $revision_name), $current_user);
+        $entity->setRevisionId(self::GenerateRevisionId($entity, $revision_name));
     }
 
 

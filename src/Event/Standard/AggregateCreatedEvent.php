@@ -24,12 +24,11 @@ class AggregateCreatedEvent extends AbstractDomainEvent
     public function __construct(
         Uuid $aggregate_id,
         ilDateTime $occurred_on,
-        int $initiating_user_id,
         ?array $additional_data = null)
     {
         $this->additional_data = $additional_data;
 
-        parent::__construct($aggregate_id, $occurred_on, $initiating_user_id);
+        parent::__construct($aggregate_id, $occurred_on);
     }
 
     public function getAdditionalData() : ?array

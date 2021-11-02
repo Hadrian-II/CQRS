@@ -16,9 +16,11 @@ abstract class AbstractCommand implements CommandContract
 {
     protected int $issuing_user_id;
 
-    public function __construct(int $issuing_user_id)
+    public function __construct()
     {
-        $this->issuing_user_id = $issuing_user_id;
+        global $DIC;
+
+        $this->issuing_user_id = $DIC->user()->getId();
     }
 
     public function getIssuingUserId() : int

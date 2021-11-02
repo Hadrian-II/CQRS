@@ -17,5 +17,5 @@ interface IsRevisable
 {
     public function getRevisionId() : ?RevisionId;
 
-    public function setRevisionId(RevisionId $id, int $user_id) : void;
+    public function setRevisionId(RevisionId $id) : void;
 }

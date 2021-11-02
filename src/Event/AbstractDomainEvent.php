@@ -27,11 +27,13 @@ abstract class AbstractDomainEvent implements DomainEvent
 
     protected int $initiating_user_id;
 
-    protected function __construct(Uuid $aggregate_id, ilDateTime $occurred_on, int $initiating_user_id)
+    protected function __construct(Uuid $aggregate_id, ilDateTime $occurred_on)
     {
+        global $DIC;
+
         $this->aggregate_id = $aggregate_id;
         $this->occurred_on = $occurred_on;
-        $this->initiating_user_id = $initiating_user_id;
+        $this->initiating_user_id = $DIC->user()->getId();
     }
 
     public function getEventId() : string
@@ -80,8 +82,9 @@ abstract class AbstractDomainEvent implements DomainEvent
     ) : AbstractDomainEvent {
         $factory = new Factory();
 
-        $restored = new static($aggregate_id, $occurred_on, $initiating_user_id);
+        $restored = new static($aggregate_id, $occurred_on);
         $restored->event_id = $factory->fromString($event_id);
+        $restored->initiating_user_id = $initiating_user_id;
 
         if (static::getEventVersion() < $event_version) {
             throw new CQRSException('Event store contains future versions of Events, ILIAS update necessary');
