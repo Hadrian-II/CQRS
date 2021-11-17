@@ -3,8 +3,7 @@
 namespace Fluxlabs\CQRS\Event;
 
 use ActiveRecord;
-use ilDateTime;
-use ilDateTimeException;
+use DateTimeImmutable;
 use ilException;
 use ILIAS\Data\UUID\Uuid;
 use ILIAS\Data\UUID\Factory;
@@ -68,7 +67,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
      */
     protected $event_name;
     /**
-     * @var ilDateTime
+     * @var DateTimeImmutable
      *
      * @con_has_field  true
      * @con_fieldtype  timestamp
@@ -112,7 +111,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
         int $event_version,
         Uuid $aggregate_id,
         string $event_name,
-        ilDateTime $occurred_on,
+        DateTimeImmutable $occurred_on,
         int $initiating_user_id,
         string $event_body,
         string $event_class
@@ -157,7 +156,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
         return $this->event_name;
     }
 
-    public function getOccurredOn() : ilDateTime
+    public function getOccurredOn() : DateTimeImmutable
     {
         return $this->occurred_on;
     }
@@ -178,7 +177,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
             case 'aggregate_id':
                 return $this->aggregate_id->toString();
             case 'occurred_on':
-                return $this->occurred_on->get(IL_CAL_DATETIME);
+                return $this->occurred_on->getTimestamp();
             default:
                 return null;
         }
@@ -191,7 +190,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
                 $factory = new Factory();
                 return $factory->fromString($field_value);
             case 'occurred_on':
-                return new ilDateTime($field_value, IL_CAL_DATETIME);
+                return (new DateTimeImmutable())->setTimestamp($field_value);
             default:
                 return null;
         }

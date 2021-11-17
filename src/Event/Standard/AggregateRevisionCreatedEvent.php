@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Fluxlabs\CQRS\Event\Standard;
 
-use ilDateTime;
+use DateTimeImmutable;
 use Fluxlabs\CQRS\Aggregate\RevisionId;
 use Fluxlabs\CQRS\Event\AbstractDomainEvent;
 use ILIAS\Data\UUID\Uuid;
@@ -23,7 +23,7 @@ class AggregateRevisionCreatedEvent extends AbstractDomainEvent
 
     public function __construct(
         Uuid $aggregate_id,
-        ilDateTime $occurred_on,
+        DateTimeImmutable $occurred_on,
         RevisionId $revision_id = null)
     {
         $this->revision_id = $revision_id;

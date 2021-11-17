@@ -4,7 +4,7 @@
 namespace Fluxlabs\CQRS\Event;
 
 use Fluxlabs\CQRS\Exception\CQRSException;
-use ilDateTime;
+use DateTimeImmutable;
 use ILIAS\Data\UUID\Factory;
 use ILIAS\Data\UUID\Uuid;
 
@@ -84,7 +84,7 @@ abstract class EventStore implements IEventStore
                 intval($row['event_version']),
                 $id,
                 intval($row['initiating_user_id']),
-                new ilDateTime($row['occurred_on']),
+                (new DateTimeImmutable())->setTimestamp($row['occurred_on']),
                 $row['event_body']
             );
             $event_stream->addEvent($event);
@@ -118,7 +118,7 @@ abstract class EventStore implements IEventStore
                 intval($row['event_version']),
                 $row['aggregate_id'],
                 intval($row['initiating_user_id']),
-                new ilDateTime($row['occurred_on']),
+                (new DateTimeImmutable())->setTimestamp($row['occurred_on']),
                 $row['event_body']
             );
             $event_stream->addEvent($event);

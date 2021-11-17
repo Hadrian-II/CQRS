@@ -3,7 +3,7 @@
 
 namespace Fluxlabs\CQRS\Event;
 
-use \ilDateTime;
+use DateTimeImmutable;
 use ILIAS\Data\UUID\Uuid;
 
 /**
@@ -26,7 +26,7 @@ interface DomainEvent
 
     public function getEventName() : string;
 
-    public function getOccurredOn() : ilDateTime;
+    public function getOccurredOn() : DateTimeImmutable;
 
     public function getInitiatingUserId() : int;
 

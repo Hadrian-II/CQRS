@@ -4,7 +4,7 @@
 namespace Fluxlabs\CQRS\Event\Standard;
 
 use Fluxlabs\CQRS\Event\AbstractDomainEvent;
-use ilDateTime;
+use DateTimeImmutable;
 use ILIAS\Data\UUID\Uuid;
 
 /**
@@ -18,7 +18,7 @@ use ILIAS\Data\UUID\Uuid;
  */
 class AggregateDeletedEvent extends AbstractDomainEvent
 {
-    public function __construct(Uuid $aggregate_id, ilDateTime $occurred_on)
+    public function __construct(Uuid $aggregate_id, DateTimeImmutable $occurred_on)
     {
         parent::__construct($aggregate_id, $occurred_on);
     }

@@ -3,9 +3,7 @@
 namespace Fluxlabs\CQRS\Projection\Persistence\ActiveRecord;
 
 use ActiveRecord;
-use Exception;
-use ilDateTime;
-use ilDateTimeException;
+use DateTimeImmutable;
 use Fluxlabs\CQRS\Projection\ValueObjects\ProjectorStatus;
 
 /**
@@ -52,7 +50,7 @@ class LedgerAR extends ActiveRecord
     public $last_position;
 
     /**
-     * @var ilDateTime
+     * @var DateTimeImmutable
      *
      * @con_has_field  true
      * @con_fieldtype  timestamp
@@ -75,7 +73,7 @@ class LedgerAR extends ActiveRecord
             case 'last_position':
                 return $this->last_position ? $this->last_position->getId() : null;
             case 'occurred_at':
-                return $this->occurred_at ? $this->occurred_at->get('Y-m-d') : null;
+                return $this->occurred_at ? $this->occurred_at->getTimestamp() : null;
             case 'status':
                 return $this->status ? $this->status->__toString() : null;
             default:
@@ -87,7 +85,7 @@ class LedgerAR extends ActiveRecord
     {
         switch ($field_name) {
             case 'occurred_at':
-                return $field_value ? new ilDateTime($field_value) : null;
+                return $field_value ? (new DateTimeImmutable())->setTimestamp($field_value) : null;
             case 'status':
                 return new ProjectorStatus($field_value);
             default:

@@ -3,7 +3,7 @@
 namespace Fluxlabs\CQRS\Projection\ValueObjects;
 
 use Exception;
-use ilDateTime;
+use DateTimeImmutable;
 use Fluxlabs\CQRS\Aggregate\AbstractValueObject;
 use Fluxlabs\CQRS\Event\DomainEvent;
 use Fluxlabs\CQRS\Projection\Projector;
@@ -23,14 +23,14 @@ class ProjectorPosition extends AbstractValueObject
 
     public string $last_position;
 
-    public ilDateTime $occurred_at;
+    public DateTimeImmutable $occurred_at;
 
     public ProjectorStatus $status;
 
     public function __construct(
         Projector $projector,
         int $processed_events,
-        ?ilDateTime $occurred_at,
+        ?DateTimeImmutable $occurred_at,
         ?string $last_position,
         ProjectorStatus $status
     ) {
@@ -59,7 +59,7 @@ class ProjectorPosition extends AbstractValueObject
         return new ProjectorPosition(
             $this->projector,
             $event_count,
-            new ilDateTime(time(), IL_CAL_UNIX),
+            new DateTimeImmutable(),
             $event->getEventId(),
             ProjectorStatus::working()
         );
@@ -70,7 +70,7 @@ class ProjectorPosition extends AbstractValueObject
         return new ProjectorPosition(
             $this->projector,
             $this->processed_events,
-            new ilDateTime(time(), IL_CAL_UNIX),
+            new DateTimeImmutable(),
             $this->last_position,
             ProjectorStatus::broken()
         );
@@ -81,7 +81,7 @@ class ProjectorPosition extends AbstractValueObject
         return new ProjectorPosition(
             $this->projector,
             $this->processed_events,
-            new ilDateTime(time(), IL_CAL_UNIX),
+            new DateTimeImmutable(),
             $this->last_position,
             ProjectorStatus::working()
         );
@@ -92,7 +92,7 @@ class ProjectorPosition extends AbstractValueObject
         return new ProjectorPosition(
             $this->projector,
             $this->processed_events,
-            new ilDateTime(time(), IL_CAL_UNIX),
+            new DateTimeImmutable(),
             $this->last_position,
             ProjectorStatus::stalled()
         );

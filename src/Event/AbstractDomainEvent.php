@@ -3,9 +3,9 @@
 
 namespace Fluxlabs\CQRS\Event;
 
+use DateTimeImmutable;
 use ILIAS\Data\UUID\Factory;
 use ILIAS\Data\UUID\Uuid;
-use ilDateTime;
 use Fluxlabs\CQRS\Exception\CQRSException;
 
 /**
@@ -23,11 +23,11 @@ abstract class AbstractDomainEvent implements DomainEvent
 
     protected Uuid $aggregate_id;
 
-    protected ilDateTime $occurred_on;
+    protected DateTimeImmutable $occurred_on;
 
     protected int $initiating_user_id;
 
-    protected function __construct(Uuid $aggregate_id, ilDateTime $occurred_on)
+    protected function __construct(Uuid $aggregate_id, DateTimeImmutable $occurred_on)
     {
         global $DIC;
 
@@ -58,7 +58,7 @@ abstract class AbstractDomainEvent implements DomainEvent
         return get_called_class();
     }
 
-    public function getOccurredOn() : ilDateTime
+    public function getOccurredOn() : DateTimeImmutable
     {
         return $this->occurred_on;
     }
@@ -77,7 +77,7 @@ abstract class AbstractDomainEvent implements DomainEvent
         int $event_version,
         Uuid $aggregate_id,
         int $initiating_user_id,
-        ilDateTime $occurred_on,
+        DateTimeImmutable $occurred_on,
         string $event_body
     ) : AbstractDomainEvent {
         $factory = new Factory();

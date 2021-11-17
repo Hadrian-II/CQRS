@@ -3,10 +3,10 @@
 
 namespace Fluxlabs\CQRS\Event\Standard;
 
+use DateTimeImmutable;
 use Fluxlabs\CQRS\Event\AbstractDomainEvent;
 use Fluxlabs\CQRS\Aggregate\AbstractValueObject;
 use ILIAS\Data\UUID\Uuid;
-use ilDateTime;
 
 /**
  * Class AggregateCreatedEvent
@@ -23,7 +23,7 @@ class AggregateCreatedEvent extends AbstractDomainEvent
 
     public function __construct(
         Uuid $aggregate_id,
-        ilDateTime $occurred_on,
+        DateTimeImmutable $occurred_on,
         ?array $additional_data = null)
     {
         $this->additional_data = $additional_data;
