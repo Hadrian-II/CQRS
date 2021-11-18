@@ -70,7 +70,7 @@ abstract class AbstractStoredEvent extends ActiveRecord
      * @var DateTimeImmutable
      *
      * @con_has_field  true
-     * @con_fieldtype  timestamp
+     * @con_fieldtype  integer
      * @con_index      true
      * @con_is_notnull true
      */
