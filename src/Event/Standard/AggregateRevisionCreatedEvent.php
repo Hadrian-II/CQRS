@@ -19,7 +19,7 @@ use ILIAS\Data\UUID\Uuid;
  */
 class AggregateRevisionCreatedEvent extends AbstractDomainEvent
 {
-    public RevisionId $revision_id;
+    public ?RevisionId $revision_id;
 
     public function __construct(
         Uuid $aggregate_id,
